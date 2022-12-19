@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,11 @@ Route::controller(UserAuthController::class)->group(function(){
     Route::middleware("auth.api")->group(function(){
         Route::get("/logout" , "logout");
         Route::get("/user/info" , "getUserInfo");
+    });
+});
+
+Route::controller(CustomerController::class)->group(function(){
+    Route::middleware("auth.api")->group(function(){
+        Route::get("/customers", "get_all_customers");
     });
 });
