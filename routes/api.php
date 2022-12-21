@@ -31,6 +31,7 @@ Route::controller(UserAuthController::class)->group(function(){
     });
 });
 
+
 Route::controller(CustomerController::class)->group(function(){
     Route::middleware("auth.api")->group(function(){
         Route::get("/customers", "get_all_customers");

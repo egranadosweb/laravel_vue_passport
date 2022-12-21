@@ -1,15 +1,16 @@
 
 
 <template>
-
     <div class="card">
-    <h5 class="card-header">Lista de clientes</h5>
-    <div class="card-body">
-        <h5 class="card-title">Clientes</h5>
-        
-        <table class="table table-dark" id="table-customers"></table>
+        <h5 class="card-header">Lista de clientes</h5>
+        <div class="card-body">
+            <h5 class="card-title">Clientes</h5>
+            
+            <table class="table table-dark" id="table-customers">
+                
+            </table>
 
-    </div>
+        </div>
     </div>
 </template>
 
@@ -18,6 +19,7 @@ import {ref, computed, onMounted} from "vue"
 
 //let url = "/api/customers"
 const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTAzMDhlNjVmZDRiNTA2YjA4ZjNlOGI5ZWM4YWMyOGZlMGUzMTk5Y2FhM2U1ZTk0NjZmMWRkODBlZjA4MjMyNGQyNTk5MzU2YjRkNTFlMDEiLCJpYXQiOjE2NzE0MTU2NjMuNjgwMjY3LCJuYmYiOjE2NzE0MTU2NjMuNjgwMjcxLCJleHAiOjE3MDI5NTE2NjMuNjczMjg5LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.cvKo-o98dfZCxnzNxLLIm7LZN0UUNeji4h0CTtrk0BcE8_I4LO8B5hEx2YTSBQIglQ7SMaculjb4wcmMvp3t_XOKgWyD-PEzeWIRmDB8zwcu42nGWdfR3NuyIXRX71JcGDEyn_9PTbSj5UXUulOy3vhPZ0M97k5mgZcjVN1G7AjRvMUUA7NiYP3J5ySLM0eR6axIZZR-M4vcYTA7FOv6mWictKpUqZvIblY1lavW3_eohjQuo84VWc_fEIvNpADjqoZSCjUcl1759c85SZfeDZWnEnFbjdAO74DNgHPvtcDcQyaKHno9wFSz-ZLuhgtsjfOD-iLYZYolug3YfHHtnHplq3wlEEIDPFPy8M1Pyijnav7dFRF2UtMLU5WrcK0UUWk7a92Uy7ZSQHXBZJga2AB0Zg8tpA5NMU1VjCZndRg0mxtTraq9KRnunqPxvDdo6oBQwLF0XjHRo2anUKWYR8r927O30W5_3swjm6838wK4pMwaoZkqWaorGcW0H1wnrEzCr5JIXNACGX5UmUws_08eWc8YRXrgFD-J12Pb0_f1jL2wIWrga4dy9AUwC2o957SjDzSl3YK_9VuOJBJtQQoQKqmqw9KMpnXkRSHcpf5ERlDyZEnjmi4PUQjr1fJVaCQ3ARBN2VqlUBdxztR_oPAAOZ6sOZDs2VuYo4qPchM"
+let tableCustomers = null
 
 onMounted(async () =>{
     try{
@@ -42,7 +44,7 @@ onMounted(async () =>{
 
 //FUNCION PARA DIBUJAR TABLA
 const drawTable = (customers) => {
-    const tableCustomers = document.querySelector("#table-customers")
+    tableCustomers = document.querySelector("#table-customers")
     let tab = `
             <thead>
                 <tr>
@@ -54,6 +56,7 @@ const drawTable = (customers) => {
                     <th>Telefono</th>
                     <th>Telefono 2</th>
                     <th>Tipo</th>
+                    <th>Acciones</th>
                 <tr>
             </thead>
             <tbody>
@@ -69,6 +72,10 @@ const drawTable = (customers) => {
                 <td>${item.phone}</td>
                 <td>${item.phone2}</td>
                 <td>${item.customer_types_id}</td>
+                <td>
+                    <button style="margin:5px 0" id="btn-eliminar" class="btn btn-danger">Eliminar</button>
+                    <button style="margin:5px 0" id="btn-editar" class="btn btn-success">Editar</button>
+                </td>
             </tr> 
         `
         tab += row
@@ -82,4 +89,7 @@ const drawTable = (customers) => {
 </script>
 
 <style scoped>
+#table-customers button {
+    color: red;
+}
 </style>
