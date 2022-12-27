@@ -58,7 +58,7 @@ class UserAuthController extends Controller
 
 
     public function login(Request $r){
-
+        
         $validator = Validator::make($r->all() , [
             "email" => "required | email | min:6 | max:25",
             "password" => "required | string",

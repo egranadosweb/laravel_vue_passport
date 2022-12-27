@@ -25,10 +25,12 @@ Route::controller(UserAuthController::class)->group(function(){
     Route::post("/registrar", "register");
     Route::post("/login" , "login");
 
+
     Route::middleware("auth.api")->group(function(){
         Route::get("/logout" , "logout");
         Route::get("/user/info" , "getUserInfo");
     });
+
 });
 
 

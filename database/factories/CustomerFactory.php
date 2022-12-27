@@ -23,7 +23,7 @@ class CustomerFactory extends Factory
             'address' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
             'phone' => $this->faker->phoneNumber(),
-            'customer_types_id' => $this->faker->randomElement(['1', '2', '3', '4']),
+            'customer_types_id' => $this->faker->randomElement(['1', '2', '3']),
         ];
     }
 }
